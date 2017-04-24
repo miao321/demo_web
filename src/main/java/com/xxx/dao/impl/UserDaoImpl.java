@@ -34,28 +34,28 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public Result addUser(String username,String password,String phone,String email)throws Exception{
+	public Result addUser(User user)throws Exception{
 		//首先判断该用户是否已经存在
-		User user=getUser(username);
+		User existedUser=getUser(user.getUsername());
 		if(user!=null){
 			return new Result(false,"用户名已经存在");
 		}
 		String id=generateId();  //给user生成id
 		
 		PreparedStatement statement=connection.prepareStatement("insert into users(id,username,password,phone,email) values(?,?,?,?,?)");
-		statement.setString(1, id);
-		statement.setString(2, username);
-		statement.setString(3, EncryptUtils.encript(password)); //保存加密的密码
-		statement.setString(4, phone);
-		statement.setString(5, email);
+		statement.setString(1, user.getId());
+		statement.setString(2, user.getUsername());
+		statement.setString(3, EncryptUtils.encript(user.getPassword())); //保存加密的密码
+		statement.setString(4, user.getPhone());
+		statement.setString(5, user.getEmail());
 		statement.execute();  //执行sql语句
 		
 		if(statement.getUpdateCount()>0){
-			User addedUser=new User(id,username,password,phone,email);
+			User addedUser=new User(user.getId(),user.getUsername(),user.getPassword(),user.getPhone(),user.getEmail());
 			logger.info("user added[{}]", addedUser);
 			return new Result(true,"添加用户成功");
 		}else{
-			logger.warn("failed to add user[name={},password={}]", username,password);
+			logger.warn("failed to add user[name={},password={}]", user.getUsername(),user.getPassword());
 			return new Result(false,"添加用户失败");
 		}
 	}

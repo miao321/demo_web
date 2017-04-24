@@ -17,7 +17,7 @@ public interface UserDao {
 	 * @return 新增成功的话返回新增的user，否则返回null
 	 * @throws Exception
 	 */
-	Result addUser(String username,String password,String phone,String email)throws Exception;
+	Result addUser(User user)throws Exception;
 	
 	/**
 	 * 根据username获取user

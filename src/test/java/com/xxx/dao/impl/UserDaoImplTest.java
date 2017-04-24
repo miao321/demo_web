@@ -17,19 +17,26 @@ public class UserDaoImplTest {
 	@Test
 	public void testAdd() throws Exception{
 		UserDao dao=new UserDaoImpl();
-		dao.addUser("miu","miao123","13559777411","771969163@qq.com");
+		User user=new User();
+		user.setId("6");
+		user.setUsername("mao");
+		user.setPassword("abc");
+		user.setPhone("12312312312");
+		user.setEmail("2312312");
+		dao.addUser(user);
+		//dao.addUser("miu","miao123","13559777411","771969163@qq.com");
 	}
 	
 	
-	@Test
-	public void testDeleteById(String id) throws Exception{
-	
-		String uuid=UUID.randomUUID().toString();
-		User user=new User(uuid,"name");
-		Result.addUser(user);
-		userDao.deleteById(uuid);
-
-	}
+//	@Test
+//	public void testDeleteById(String id) throws Exception{
+//	
+//		String uuid=UUID.randomUUID().toString();
+//		User user=new User(uuid,"name");
+//		Result.addUser(user);
+//		userDao.deleteById(uuid);
+//
+//	}
 	
 //	@Test
 //	public void testDeleteByName() throws Exception{
