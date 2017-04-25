@@ -58,6 +58,6 @@ public interface UserDao {
 	 * @return 是否修改成功
 	 * @throws Exception
 	 */
-	boolean updateByName(String id,String username,String password,String phone,String email)throws Exception;
+	boolean updateByName(User user)throws Exception;
 
 }
