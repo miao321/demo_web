@@ -33,7 +33,7 @@ public interface UserDao {
 	 * @return 是否删除成功
 	 * @throws Exception
 	 */
-	boolean deleteById(String id) throws Exception;
+	boolean deleteById(String user_id) throws Exception;
 	
 	/**
 	 * 删除指定名字的user

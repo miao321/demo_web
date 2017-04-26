@@ -35,30 +35,42 @@ public class User {
 		return validName(name)&& validPasswd(password);
 	}
 	
-	private String id;
+	private String user_id;
 	private String username;
 	private String password;
+	private String confirPassword;
 	private String phone;
 	private String email;
+	private String role;
+	
 	
 	public User(){
 		
 	}
-	public User(String id,String username,String password,String phone,String email){
+	public User(String user_id,String username,String password,String phone,String email){
 		super();
-		this.id=id;
+		this.user_id=user_id;
 		this.username=username;
 		this.password=password;
 		this.phone=phone;
 		this.email=email;
 	}
-
-	public String getId() {
-		return id;
+	
+	
+	public String getRole() {
+		return role;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUsername() {
@@ -77,6 +89,14 @@ public class User {
 		this.password = password;
 	}
 	
+	public String getConfirPassword() {
+		return confirPassword;
+	}
+
+	public void setConfirPassword(String confirPassword) {
+		this.confirPassword = confirPassword;
+	}
+
 	public String getPhone() {
 		return phone;
 	}
@@ -95,7 +115,7 @@ public class User {
 
 	@Override
 	public String toString(){
-		return String.format("user[id=%s,name=%s,password=%s,phone=%s,email=%s]", id,username,password,phone,email);
+		return String.format("user[user_id=%s,username=%s,password=%s,phone=%s,email=%s]", user_id,username,password,phone,email);
 	}
 
 }

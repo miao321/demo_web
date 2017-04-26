@@ -33,15 +33,17 @@ public class RegisterServlet extends HttpServlet {
 		//实现注册功能
 		RegisterService registerService=null;
 		Result result=null;
-		User user=new User();
+		//User user=new User();
 		try{
 			registerService=new RegisterServiceImpl();
 			//获取网页表单的内容
+			String user_id=request.getParameter("user_id");
 			String username=request.getParameter("username");
 			String password=request.getParameter("password");
+			String confirPassword=request.getParameter("confirPassword");
 			String phone=request.getParameter("phone");
 			String email=request.getParameter("email");
-			result=registerService.register(username, password,phone,email);
+			result=registerService.register(user_id,username,password,phone,email);
 		}catch(Exception e){
 			//数据库连接创建失败
 			logger.error("{}", e);
@@ -53,13 +55,6 @@ public class RegisterServlet extends HttpServlet {
 		
 		if(result.isSuccess()){
 			//注册成功，跳转到login.jsp
-			try {							//这里不确定
-				System.out.println("欢迎您，"+user.getUsername());
-	            Thread.sleep(3000);
-	        } catch (InterruptedException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	        }
 			request.getRequestDispatcher(PathUtils.JSP_LOGIN).forward(request, response);
 		}else{
 			request.setAttribute("result", result);

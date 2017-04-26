@@ -23,13 +23,6 @@ import com.xxx.util.PathUtils;
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static final Logger logger=LoggerFactory.getLogger(IndexServlet.class);   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public IndexServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

@@ -49,7 +49,18 @@ public class LoginServlet extends HttpServlet {
 		
 		if(result.isSuccess()){
 			//登录成功，跳转到index.jsp
-			request.setAttribute("username", result);  //获取登录的名字绑定到jsp上，好让jsp那边取出值显示
+//			request.getSession().setAttribute("result", result);
+//			String role=result.g
+			String username=request.getParameter("username");
+			if("admin".equals(username)){
+			request.setAttribute("username", loginService.loginName());  //获取登录的名字绑定到jsp上，好让jsp那边取出值显示
+			request.getRequestDispatcher(PathUtils.JSP_BACKGROUND).forward(request, response);
+			}else{
+				request.setAttribute("username", loginService.loginName());  //获取登录的名字绑定到jsp上，好让jsp那边取出值显示
+				request.getRequestDispatcher(PathUtils.JSP_INDEX).forward(request, response);
+			}
+		}else{
+			request.setAttribute("result", result);//获取登录的名字绑定到jsp上，好让jsp那边取出值显示
 			request.getRequestDispatcher(PathUtils.JSP_LOGIN).forward(request, response);
 		}
 	}

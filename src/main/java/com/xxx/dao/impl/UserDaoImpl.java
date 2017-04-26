@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,10 +42,23 @@ public class UserDaoImpl implements UserDao {
 		if(existedUser!=null){
 			return new Result(false,"用户名已经存在");
 		}
-		String id=generateId();  //给user生成id
 		
-		PreparedStatement statement=connection.prepareStatement("insert into users(id,username,password,phone,email) values(?,?,?,?,?)");		
-		statement.setString(1,id);
+		User password=getUser(user.getPassword());
+		User confirPassword=getUser(user.getConfirPassword());
+		if(password!=confirPassword){
+			return new Result(false,"两次密码不一样");
+		}
+//		String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$";
+//		User phone=getUser(user.getPhone());
+//		//String existedPhone=(String)phone;
+//		if(!phone.equals(regex)){
+//			return new Result(false,"手机号不存在");
+//		}
+		
+		String user_id=generateId();  //给user生成id
+		
+		PreparedStatement statement=connection.prepareStatement("insert into users(user_id,username,password,phone,email) values(?,?,?,?,?)");		
+		statement.setString(1,user_id);
 		statement.setString(2, user.getUsername());
 		statement.setString(3, EncryptUtils.encript(user.getPassword())); //保存加密的密码
 		statement.setString(4, user.getPhone());
@@ -51,7 +66,7 @@ public class UserDaoImpl implements UserDao {
 		statement.execute();  //执行sql语句
 		
 		if(statement.getUpdateCount()>0){
-			User addedUser=new User(id,user.getUsername(),user.getPassword(),user.getPhone(),user.getEmail());
+			User addedUser=new User(user_id,user.getUsername(),user.getPassword(),user.getPhone(),user.getEmail());
 			logger.info("user added[{}]", addedUser);
 			return new Result(true,"添加用户成功");
 		}else{
@@ -82,17 +97,17 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public boolean deleteById(String id)throws Exception{
-		PreparedStatement statement=connection.prepareStatement("delete from users where id=?");
-		statement.setString(1, id);
+	public boolean deleteById(String user_id)throws Exception{
+		PreparedStatement statement=connection.prepareStatement("delete from users where user_id=?");
+		statement.setString(1, user_id);
 		statement.execute();
 		boolean success=false;
 		if(statement.getUpdateCount()>0){
 			//删除成功
-			logger.info("delete user[id={}]", id);
+			logger.info("delete user[id={}]", user_id);
 			success=true;
 		}else{
-			logger.warn("failed to delete user[id={}]", id);
+			logger.warn("failed to delete user[id={}]", user_id);
 			success=false;
 		}
 		return success;
@@ -122,11 +137,11 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs=statement.executeQuery();
 		if(rs.next()){
 			//查询结果集
-			String id=rs.getString(1);
+			String user_id=rs.getString(1);
 			String password=rs.getString(3);
 			String phone=rs.getString(4);
 			String email=rs.getString(5);
-			User user=new User(id,username,password,phone,email);
+			User user=new User(user_id,username,password,phone,email);
 			logger.info("get user[{}]",user);
 			return user;
 		}else{

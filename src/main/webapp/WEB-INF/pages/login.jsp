@@ -29,10 +29,10 @@
 		</div>
 	</div>
 	
-	<div class="row" style="margin-top:100px;align:center">
-		<div class="col-sm-offset-4 col-sm-4">
+	<div class="row" style="margin-top:100px;align:center;">
+		<div class="col-sm-offset-4 col-sm-4" style="background:#eee;width:500px;border-radius:8px;box-shadow:5px 5px 5px #333">
 			<form action="LoginServlet" method="post" role="form">
-				<div class="form-group">
+				<div class="form-group" style="margin-top:15px">
 					<div class="col-sm-12">
 						<input type="text" name="username" class="form-control" placeholder="请输入用户名">
 					</div>
@@ -61,7 +61,7 @@
 				%>
 			</form>
 			<!-- 注册 -->
-				<div class="col-sm-12" style="margin-top:15px;">
+				<div class="col-sm-12" style="margin-top:15px;margin-bottom:15px">
 					<a href="RegisterUIServlet" type="button" class="btn btn-primary form-horizontal" style="width:100%">注册</a>
 				</div>
 		</div>

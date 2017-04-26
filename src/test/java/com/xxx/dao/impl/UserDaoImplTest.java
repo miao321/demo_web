@@ -14,18 +14,18 @@ import com.xxx.dao.UserDao;
  */
 
 public class UserDaoImplTest {
-//	@Test
-//	public void testAdd() throws Exception{
-//		UserDao dao=new UserDaoImpl();
-//		User user=new User();
-//		user.setId("8");
-//		user.setUsername("mao123");
-//		user.setPassword("abc");
-//		user.setPhone("12312312312");
-//		user.setEmail("2312312");
-//		dao.addUser(user);
-//		//dao.addUser("miu","miao123","13559777411","771969163@qq.com");
-//	}
+	@Test
+	public void testAdd() throws Exception{
+		UserDao dao=new UserDaoImpl();
+		User user=new User();
+		user.setUser_id("user_id");
+		user.setUsername("mao");
+		user.setPassword("mao");
+		user.setPhone("12312312312");
+		user.setEmail("2312312");
+		dao.addUser(user);
+		//dao.addUser("miu","miao123","13559777411","771969163@qq.com");
+	}
 //	
 //	
 //	@Test
@@ -72,7 +72,7 @@ public class UserDaoImplTest {
 		UserDao dao=new UserDaoImpl();
 		User user=new User();
 		//String uuid=UUID.randomUUID().toString();
-		user.setId("id");
+		user.setUser_id("user_id");
 		user.setUsername("miao");
 		user.setPassword("sdac");
 		user.setPhone("321");

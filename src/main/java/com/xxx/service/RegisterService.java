@@ -16,6 +16,6 @@ public interface RegisterService {
 	 * @return 注册结果
 	 * @throws Exception
 	 */
-	Result register(String username,String password,String phone,String email)throws Exception;
+	Result register(String user_id,String username,String password,String phone,String email)throws Exception;
 
 }
