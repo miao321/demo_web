@@ -29,22 +29,22 @@ public class UserDaoImplTest {
 //	
 //	
 //	@Test
-	public void testDeleteById() throws Exception{
-		
+//	public void testDeleteById() throws Exception{
+//		
+////		String uuid=UUID.randomUUID().toString();
+////		User user=new User(uuid,"name");
+////		userDao.addUser(user);
+////		userDao.deleteById(uuid);
+//		
 //		String uuid=UUID.randomUUID().toString();
-//		User user=new User(uuid,"name");
-//		userDao.addUser(user);
-//		userDao.deleteById(uuid);
-		
-		String uuid=UUID.randomUUID().toString();
-		UserDao dao=new UserDaoImpl();
-		User user=new User(uuid,"username", "password", "phone", "email");
-		System.out.println(uuid);
-		dao.addUser(user);
-		dao.deleteById(uuid);
-		
-		
-	}
+//		UserDao dao=new UserDaoImpl();
+//		User user=new User(uuid,"username", "password", "phone", "email");
+//		System.out.println(uuid);
+//		dao.addUser(user);
+//		dao.deleteById(uuid);
+//		
+//		
+//	}
 	
 //	@Test
 //	public void testDeleteByName() throws Exception{

@@ -43,7 +43,8 @@ public class RegisterServlet extends HttpServlet {
 			String confirPassword=request.getParameter("confirPassword");
 			String phone=request.getParameter("phone");
 			String email=request.getParameter("email");
-			result=registerService.register(user_id,username,password,phone,email);
+			String role=request.getParameter("role");
+			result=registerService.register(user_id,username,password,phone,email,role);
 		}catch(Exception e){
 			//数据库连接创建失败
 			logger.error("{}", e);

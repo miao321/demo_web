@@ -36,21 +36,23 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	@Override
-	public Result addUser(User user)throws Exception{
+	public Result addUser(User user) throws Exception{
 		//首先判断该用户是否已经存在
 		User existedUser=getUser(user.getUsername());
 		if(existedUser!=null){
 			return new Result(false,"用户名已经存在");
 		}
 		
-		User password=getUser(user.getPassword());
-		User confirPassword=getUser(user.getConfirPassword());
-		if(password!=confirPassword){
-			return new Result(false,"两次密码不一样");
-		}
+		
+//		User password=getUser(user.getPassword());
+//		User confirPassword=getUser(user.getConfirPassword());
+//		if(!confirPassword.equals(password)){
+//			return new Result(false,"两次密码不一样");
+//		}
 //		String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$";
 //		User phone=getUser(user.getPhone());
 //		//String existedPhone=(String)phone;
+//		//private UserDao dao=new UserDaoImpl();
 //		if(!phone.equals(regex)){
 //			return new Result(false,"手机号不存在");
 //		}
@@ -66,7 +68,7 @@ public class UserDaoImpl implements UserDao {
 		statement.execute();  //执行sql语句
 		
 		if(statement.getUpdateCount()>0){
-			User addedUser=new User(user_id,user.getUsername(),user.getPassword(),user.getPhone(),user.getEmail());
+			User addedUser=new User(user_id,user.getUsername(),user.getPassword(),user.getPhone(),user.getEmail(),user.getRole());
 			logger.info("user added[{}]", addedUser);
 			return new Result(true,"添加用户成功");
 		}else{
@@ -87,7 +89,8 @@ public class UserDaoImpl implements UserDao {
 			String password=rs.getString(3);
 			String phone=rs.getString(4);
 			String email=rs.getString(5);
-			User user=new User(id,username,password,phone,email);
+			String role=rs.getString(6);
+			User user=new User(id,username,password,phone,email,role);
 			logger.info("get user[{}]",user);
 			return user;
 		}else{
@@ -141,7 +144,8 @@ public class UserDaoImpl implements UserDao {
 			String password=rs.getString(3);
 			String phone=rs.getString(4);
 			String email=rs.getString(5);
-			User user=new User(user_id,username,password,phone,email);
+			String role=rs.getString(6);
+			User user=new User(user_id,username,password,phone,email,role);
 			logger.info("get user[{}]",user);
 			return user;
 		}else{

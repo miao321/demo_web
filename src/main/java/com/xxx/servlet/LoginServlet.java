@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.xxx.bean.User;
 import com.xxx.service.LoginService;
 import com.xxx.service.impl.LoginServiceImpl;
 import com.xxx.util.PathUtils;
@@ -49,16 +50,16 @@ public class LoginServlet extends HttpServlet {
 		
 		if(result.isSuccess()){
 			//登录成功，跳转到index.jsp
-//			request.getSession().setAttribute("result", result);
-//			String role=result.g
-			String username=request.getParameter("username");
-			if("admin".equals(username)){
-			request.setAttribute("username", loginService.loginName());  //获取登录的名字绑定到jsp上，好让jsp那边取出值显示
-			request.getRequestDispatcher(PathUtils.JSP_BACKGROUND).forward(request, response);
-			}else{
+//			User user=new User();
+			//User user=(User) request.getSession().getAttribute("user");
+			//String username=request.getParameter("username");
+//			if("admin".equals(user.getRole())){
+//			request.setAttribute("username", loginService.loginName());  //获取登录的名字绑定到jsp上，好让jsp那边取出值显示
+//			request.getRequestDispatcher(PathUtils.JSP_BACKGROUND).forward(request, response);
+//			}else{
 				request.setAttribute("username", loginService.loginName());  //获取登录的名字绑定到jsp上，好让jsp那边取出值显示
 				request.getRequestDispatcher(PathUtils.JSP_INDEX).forward(request, response);
-			}
+//			}
 		}else{
 			request.setAttribute("result", result);//获取登录的名字绑定到jsp上，好让jsp那边取出值显示
 			request.getRequestDispatcher(PathUtils.JSP_LOGIN).forward(request, response);

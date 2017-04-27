@@ -34,20 +34,20 @@ public class LoginServiceImpl implements LoginService {
 		userDao=new UserDaoImpl();
 	}
 	@Override
-	public Result login(String name, String password) throws Exception {
+	public Result login(String username, String password) throws Exception {
 		// 检查参数是否合法
-		if (name == null || password == null) {
+		if (username == null || password == null) {
 			return new Result(false, "用户名或密码不能为空");
 		}
 		
 		User user = null;
 		try {
-			user = userDao.getUser(name);
+			user = userDao.getUser(username);
 		} catch (Exception e) {
 			logger.error("{}", e);
 		}
 		if (user == null) { // 没有该用户
-			return new Result(false, String.format("用户\"%s\"不存在", name));
+			return new Result(false, String.format("用户\"%s\"不存在", username));
 		}
 		if (!EncryptUtils.encript(password).equals(user.getPassword())) { // 密码错误
 			return new Result(false, "密码错误");
