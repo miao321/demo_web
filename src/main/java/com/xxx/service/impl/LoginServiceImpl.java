@@ -38,8 +38,7 @@ public class LoginServiceImpl implements LoginService {
 		// 检查参数是否合法
 		if (username == null || password == null) {
 			return new Result(false, "用户名或密码不能为空");
-		}
-		
+		}		
 		User user = null;
 		try {
 			user = userDao.getUser(username);

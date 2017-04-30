@@ -14,6 +14,20 @@
 <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/3.1.0/jquery.js"> </script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+<script>
+	//function check(){
+		//var password=document.getElementById("password");
+		//var confirmPassword=document.getElementById("confirmPassword");
+		//var pass="^[a-zA-Z0-9]{6,16}$";
+		//if(password.value!=confirmPassword.value){
+		//	alert("两次密码不一样");
+		//}
+		//if(password!=pass){
+		//	alert("密码格式不一样");
+		//}
+		
+	//}
+</script>
 <title>注册</title>
 </head>
 <body>
@@ -29,7 +43,7 @@
 	
 	<div class="row" style="margin-top:100px;align:center">
 		<div class="col-sm-offset-4 col-sm-4" style="background:#eee;width:500px;border-radius:8px;box-shadow:5px 5px 5px #333">
-			<form action="RegisterServlet" method="post" class="form-horizontal" role="form">
+			<form action="RegisterServlet" method="post" class="form-horizontal" role="form" >
 				<div class="form-group">
 					<div class="col-sm-12" style="margin-top:15px;">
 						<input type="text" name="username" class="form-control" placeholder="请输入用户名">
@@ -37,12 +51,12 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
-						<input type="password" name="password" class="form-control" placeholder="请输入密码">
+						<input type="password" name="password" id="password" class="form-control" placeholder="请输入密码">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
-						<input type="password" name="confirPassword" class="form-control" placeholder="请再次输入密码">
+						<input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="请再次输入密码">
 					</div>
 				</div>
 				<div class="form-group">
@@ -57,7 +71,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
-						<button type="submit" class="btn btn-primary" class="form-control" style="width:100%">注册</button>
+						<button type="submit" class="btn btn-primary" class="form-control" style="width:100%" >注册</button>
 					</div>
 				</div>
 				

@@ -14,18 +14,18 @@ import com.xxx.dao.UserDao;
  */
 
 public class UserDaoImplTest {
-	@Test
-	public void testAdd() throws Exception{
-		UserDao dao=new UserDaoImpl();
-		User user=new User();
-		user.setUser_id("user_id");
-		user.setUsername("mao");
-		user.setPassword("mao");
-		user.setPhone("12312312312");
-		user.setEmail("2312312");
-		dao.addUser(user);
-		//dao.addUser("miu","miao123","13559777411","771969163@qq.com");
-	}
+//	@Test
+//	public void testAdd() throws Exception{
+//		UserDao dao=new UserDaoImpl();
+//		User user=new User();
+//		user.setUser_id("user_id");
+//		user.setUsername("mao");
+//		user.setPassword("mao");
+//		user.setPhone("12312312312");
+//		user.setEmail("2312312");
+//		dao.addUser(user);
+//		//dao.addUser("miu","miao123","13559777411","771969163@qq.com");
+//	}
 //	
 //	
 //	@Test
@@ -52,13 +52,13 @@ public class UserDaoImplTest {
 //		dao.deleteByName("mao123");
 //	}
 	
-//	@Test
-//	public void testGetUser() throws Exception{
-//		UserDao dao=new UserDaoImpl();
-//		User user=dao.getUser("miao");
-//		
-//		
-//	}
+	@Test
+	public void testGetUser() throws Exception{
+		UserDao dao=new UserDaoImpl();
+		User user=dao.getUser("mao","mao");
+		
+		
+	}
 	
 //	@Test
 //	public void testSearchByName() throws Exception{
@@ -67,20 +67,20 @@ public class UserDaoImplTest {
 //		System.out.println("user="+user.getEmail());
 //	}
 	
-	@Test
-	public void testUpdateByName() throws Exception{
-		UserDao dao=new UserDaoImpl();
-		User user=new User();
-		//String uuid=UUID.randomUUID().toString();
-		user.setUser_id("user_id");
-		user.setUsername("miao");
-		user.setPassword("sdac");
-		user.setPhone("321");
-		user.setEmail("43143");
-		boolean b=dao.updateByName(user);
-		System.out.println(b);
-		
-		
-	}
+//	@Test
+//	public void testUpdateByName() throws Exception{
+//		UserDao dao=new UserDaoImpl();
+//		User user=new User();
+//		//String uuid=UUID.randomUUID().toString();
+//		user.setUser_id("user_id");
+//		user.setUsername("miao");
+//		user.setPassword("sdac");
+//		user.setPhone("321");
+//		user.setEmail("43143");
+//		boolean b=dao.updateByName(user);
+//		System.out.println(b);
+//		
+//		
+//	}
 
 }

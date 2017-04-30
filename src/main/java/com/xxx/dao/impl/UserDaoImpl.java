@@ -43,10 +43,17 @@ public class UserDaoImpl implements UserDao {
 			return new Result(false,"用户名已经存在");
 		}
 		
-		
 //		User password=getUser(user.getPassword());
-//		User confirPassword=getUser(user.getConfirPassword());
-//		if(!confirPassword.equals(password)){
+//		String pass="^[a-zA-Z0-9]{6,16}$";
+		//String password = null;
+//		
+//		if(!password.equals(pass)){
+//		//if(User.validPasswd(pass)){
+//			return new Result(false,"密码格式不对");
+//		}
+//		User password=getUser(user.getPassword());
+//		User confirmPassword=getUser(user.getConfirPassword());
+//		if(!password.equals(confirmPassword)){
 //			return new Result(false,"两次密码不一样");
 //		}
 //		String regex = "^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\\d{8}$";
@@ -73,7 +80,6 @@ public class UserDaoImpl implements UserDao {
 			return new Result(true,"添加用户成功");
 		}else{
 			logger.warn("failed to add user[name={},password={}]", user.getUsername(),user.getPassword());
-			
 			return new Result(false,"添加用户失败");
 		}
 	}
@@ -95,6 +101,26 @@ public class UserDaoImpl implements UserDao {
 			return user;
 		}else{
 			logger.info("failed to get user[name={}]", username);
+			return null;
+		}
+	}	
+	@Override
+	public User getUser(String username,String password) throws Exception{
+		PreparedStatement statement=connection.prepareStatement("select * from users where username=? and password=?");
+		statement.setString(1, username);
+		statement.setString(2, password);
+		ResultSet rs=statement.executeQuery();		
+		if(rs.next()){
+			//查询结果
+			String id=rs.getString(1);
+			String phone=rs.getString(4);
+			String email=rs.getString(5);
+			String role=rs.getString(6);
+			User user=new User(id,username,password,phone,email,role);			
+			logger.info("get user[{}]", user);
+			return user;
+		}else{
+			logger.info("failed to get user[name={},password={}]", username,password);
 			return null;
 		}
 	}

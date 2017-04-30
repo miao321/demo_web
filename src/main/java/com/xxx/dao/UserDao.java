@@ -28,6 +28,14 @@ public interface UserDao {
 	User getUser(String username)throws Exception;
 	
 	/**
+	 * 根据username password 获取user
+	 * @param username password
+	 * @return 存在的话返回该user，否则返回null
+	 * @throws Exception
+	 */
+	User getUser(String username,String password) throws Exception;
+	
+	/**
 	 * 删除指定的user
 	 * @param id 要删除的user的id
 	 * @return 是否删除成功

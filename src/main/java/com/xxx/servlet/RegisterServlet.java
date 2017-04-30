@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.xxx.bean.User;
+import com.xxx.service.LoginService;
 import com.xxx.service.RegisterService;
 import com.xxx.service.impl.RegisterServiceImpl;
 import com.xxx.util.PathUtils;
@@ -36,11 +37,12 @@ public class RegisterServlet extends HttpServlet {
 		//User user=new User();
 		try{
 			registerService=new RegisterServiceImpl();
+			response.setContentType("text/html,charset=utf-8");
 			//获取网页表单的内容
 			String user_id=request.getParameter("user_id");
 			String username=request.getParameter("username");
 			String password=request.getParameter("password");
-			String confirPassword=request.getParameter("confirPassword");
+			String confirmPassword=request.getParameter("confirmPassword");
 			String phone=request.getParameter("phone");
 			String email=request.getParameter("email");
 			String role=request.getParameter("role");
@@ -55,6 +57,7 @@ public class RegisterServlet extends HttpServlet {
 		}
 		
 		if(result.isSuccess()){
+			//request.setAttribute("username",registerService.);
 			//注册成功，跳转到login.jsp
 			request.getRequestDispatcher(PathUtils.JSP_LOGIN).forward(request, response);
 		}else{
